@@ -1,14 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import { createGlobalStyle } from "styled-components";
+import { normalize } from "styled-normalize";
+import * as serviceWorker from "./serviceWorker";
+import { Provider } from "react-redux";
+import stores from "./redux/stores";
+
+export const GlobalStyle = createGlobalStyle`
+  ${normalize}
+ 
+  * {
+    padding: 0;
+    maring: 0;
+    box-sizing: border-box;
+  }
+  `;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <>
+    <GlobalStyle />
+    <Provider store={stores}>
+      <App />
+    </Provider>
+  </>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
