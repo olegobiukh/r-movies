@@ -2,4 +2,4 @@ in progress
 
 [Demo](https://olegobiukh.github.io/r-movies/#/)
 
-React, Redux, Styled Components, Grid, Axios
+React, Redux, Thunk, Saga, Styled Components, Grid, Axios
