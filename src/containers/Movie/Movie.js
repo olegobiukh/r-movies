@@ -2,22 +2,21 @@ import React, { useState } from "react";
 import { Container, MovieInfo, Text, Button } from "./styles";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
-import Wrapper from "../../components/catalog/Wrapper";
+import Wrapper from "../../components/Wrapper";
 
-const Movie = ({ match, movies, genres, isGenresLoaded, isMoviesLoaded }) => {
+const Movie = ({ match, movies, genres, isLoaded }) => {
   const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
   const [watchMovies, setWatchMovies] = useState(watchlist);
 
   const id = +match.params.id;
   const movie = movies.find((item) => item.id === id);
 
-  const movieGenres =
-    isMoviesLoaded > 0 && isGenresLoaded
-      ? movie.genre_ids
-          .map((el) => genres.find((elem) => elem.id === el))
-          .map((element) => element.name)
-          .join(", ")
-      : "";
+  const movieGenres = isLoaded
+    ? movie.genre_ids
+        .map((el) => genres.find((elem) => elem.id === el))
+        .map((element) => element.name)
+        .join(", ")
+    : "";
 
   const addToWatchList = () => {
     const finalWatchlist = watchMovies.includes(movie.id)

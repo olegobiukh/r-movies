@@ -5,13 +5,13 @@ import Item from "../Item";
 import { Movies } from "./styles";
 import uid from "uid";
 
-const Items = ({ movies, genres, isMoviesLoaded, isGenresLoaded }) => {
-
+const Items = ({ movies, genres, isLoaded }) => {
+  
   return (
     <Movies>
-      {isMoviesLoaded &&
+      {isLoaded &&
         movies.map((item) => (
-          <Item key={uid()} item={item} allGenres={genres} isGenresLoaded={isGenresLoaded} />
+          <Item key={uid()} item={item} allGenres={genres} isLoaded={isLoaded} />
         ))}
     </Movies>
   );

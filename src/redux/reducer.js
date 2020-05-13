@@ -1,15 +1,13 @@
 import {
   GET_MOVIES,
   GET_GENRES,
-  IS_MOVIES_LOADED,
-  IS_GENRES_LOADED,
-} from "../constants";
+  IS_LOADED,
+} from "./constants";
 
 const initialState = {
   movies: [],
   genres: {},
-  isMoviesLoaded: false,
-  isGenresLoaded: false,
+  isLoaded: false,
 };
 
 export default (state = initialState, action) => {
@@ -24,15 +22,10 @@ export default (state = initialState, action) => {
         ...state,
         genres: action.payload,
       };
-    case IS_MOVIES_LOADED:
+    case IS_LOADED:
       return {
         ...state,
-        isMoviesLoaded: action.payload,
-      };
-    case IS_GENRES_LOADED:
-      return {
-        ...state,
-        isGenresLoaded: action.payload,
+        isLoaded: action.payload,
       };
     default:
       return state;

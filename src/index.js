@@ -6,7 +6,7 @@ import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
-import stores from "./redux/stores";
+import stores from "./redux/store";
 
 export const GlobalStyle = createGlobalStyle`
   ${normalize}

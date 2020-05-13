@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Title, Subtitle, Movie, Right } from "./styles";
 import { Link } from "react-router-dom";
 
-const Item = ({ item, allGenres, isGenresLoaded }) => {
+const Item = ({ item, allGenres, isLoaded }) => {
   const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
   const [watchMovies, setWatchMovies] = useState(watchlist);
 
@@ -15,7 +15,7 @@ const Item = ({ item, allGenres, isGenresLoaded }) => {
   };
 
   const genres =
-    isGenresLoaded &&
+    isLoaded &&
     item.genre_ids
       .map((el) => allGenres.find((elem) => elem.id === el))
       .map((element) => element.name);
@@ -31,7 +31,7 @@ const Item = ({ item, allGenres, isGenresLoaded }) => {
           <Title>{item.title}</Title>
         </Link>
         <p className={`title`}>
-          <Subtitle>Genre</Subtitle>: {isGenresLoaded && genres.join(", ")}
+          <Subtitle>Genre</Subtitle>: {isLoaded && genres.join(", ")}
         </p>
         <button onClick={toggleItemWatched}>
           {watchMovies.includes(item.id)

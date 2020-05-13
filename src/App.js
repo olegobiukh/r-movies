@@ -5,17 +5,15 @@ import { HashRouter, Route, Switch } from "react-router-dom";
 import uid from "uid";
 import routes from "./router";
 
-function App({ getGenresHandler, getMoviesHandler }) {
-
+function App({ requestData }) {
   useEffect(() => {
-    getMoviesHandler();
-    getGenresHandler();
-  }, [getMoviesHandler, getGenresHandler]);
+    requestData();
+  }, [requestData]);
 
   const newRoutes = routes.map((item) => (
     <Route key={uid()} exact path={item.url} component={item.component} />
   ));
-  
+
   return (
     <HashRouter>
       <Switch>{newRoutes}</Switch>
