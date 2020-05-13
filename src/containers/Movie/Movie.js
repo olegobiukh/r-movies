@@ -4,16 +4,15 @@ import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import Wrapper from "../../components/catalog/Wrapper";
 
-const Movie = ({ match, movies, genres }) => {
-  console.log(match.params.id);
+const Movie = ({ match, movies, genres, isGenresLoaded, isMoviesLoaded }) => {
   const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
   const [watchMovies, setWatchMovies] = useState(watchlist);
 
   const id = +match.params.id;
   const movie = movies.find((item) => item.id === id);
-  console.log(JSON.stringify(genres));
+
   const movieGenres =
-    movies.length > 0 && genres.length > 0
+    isMoviesLoaded > 0 && isGenresLoaded
       ? movie.genre_ids
           .map((el) => genres.find((elem) => elem.id === el))
           .map((element) => element.name)

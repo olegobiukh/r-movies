@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 import Wrapper from "../../components/catalog/Wrapper";
-import { WatchItem, Button } from "./styles";
+import { WatchItem } from "./styles";
 import uid from "uid";
 
 const WatchList = ({ movies }) => {
