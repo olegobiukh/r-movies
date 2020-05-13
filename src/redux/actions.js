@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_MOVIES, GET_GENRES, IS_MOVIES_LOADED, IS_GENRES_LOADED } from "../constants";
+import { GET_MOVIES, GET_GENRES, IS_MOVIES_LOADED, IS_GENRES_LOADED } from "./constants";
 
 const baseUrl = "https://api.themoviedb.org/3/";
 

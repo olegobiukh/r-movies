@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, MovieInfo, Text, Button } from "./styles";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
-import Wrapper from "../../components/catalog/Wrapper";
+import Wrapper from "../../components/Wrapper";
 
 const Movie = ({ match, movies, genres, isGenresLoaded, isMoviesLoaded }) => {
   const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
@@ -12,7 +12,7 @@ const Movie = ({ match, movies, genres, isGenresLoaded, isMoviesLoaded }) => {
   const movie = movies.find((item) => item.id === id);
 
   const movieGenres =
-    isMoviesLoaded > 0 && isGenresLoaded
+    isGenresLoaded
       ? movie.genre_ids
           .map((el) => genres.find((elem) => elem.id === el))
           .map((element) => element.name)

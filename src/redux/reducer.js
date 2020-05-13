@@ -3,7 +3,7 @@ import {
   GET_GENRES,
   IS_MOVIES_LOADED,
   IS_GENRES_LOADED,
-} from "../constants";
+} from "./constants";
 
 const initialState = {
   movies: [],
