@@ -1,11 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
-import * as actions from "../../../redux/actions";
+import { observer, inject } from "mobx-react";
 import Item from "../Item";
 import { Movies } from "./styles";
 import uid from "uid";
 
-const Items = ({ movies, genres }) => {
+const Items = inject("store")(
+  observer(({ store }) => {
+    const { movies, genres } = store;
   return (
     <Movies>
       {movies && movies.map((item) => (
@@ -13,6 +14,6 @@ const Items = ({ movies, genres }) => {
       ))}
     </Movies>
   );
-};
+}));
 
-export default connect((state) => state, actions)(Items);
+export default Items;

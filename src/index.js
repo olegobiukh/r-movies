@@ -1,14 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import { Provider } from "mobx-react";
+import { store } from "./store";
 import App from "./App";
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
 import * as serviceWorker from "./serviceWorker";
-import { Provider } from "react-redux";
-import stores from "./redux/stores";
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   ${normalize}
  
   * {
@@ -21,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 ReactDOM.render(
   <>
     <GlobalStyle />
-    <Provider store={stores}>
+    <Provider store={store}>
       <App />
     </Provider>
   </>,

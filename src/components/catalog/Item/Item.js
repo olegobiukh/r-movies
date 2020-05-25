@@ -7,9 +7,10 @@ const Item = ({ item, allGenres }) => {
   const [watchMovies, setWatchMovies] = useState(watchlist);
 
   const toggleItemWatched = () => {
-    const finalWatchlist = watchMovies.includes(item.id)
-      ? watchlist.filter((el) => el !== item.id)
-      : [...watchMovies, item.id];
+    const finalWatchlist = watchMovies.some((el) => el.id === item.id)
+      ? watchlist.filter((el) => el.id !== item.id)
+      : [...watchMovies, { id: item.id, title: item.title }];
+
     localStorage.setItem("watchlist", JSON.stringify(finalWatchlist));
     setWatchMovies(finalWatchlist);
   };
@@ -24,7 +25,7 @@ const Item = ({ item, allGenres }) => {
     <Movie>
       <img
         src={`https://image.tmdb.org/t/p/w154${item.poster_path}`}
-        alt={`brad pitt`}
+        alt={item.title}
       />
       <Right>
         <Link to={`m${item.id}`}>
@@ -34,7 +35,7 @@ const Item = ({ item, allGenres }) => {
           <Subtitle>Genre</Subtitle>: {genres && genres.join(", ")}
         </p>
         <button onClick={toggleItemWatched}>
-          {watchMovies.includes(item.id)
+          {watchMovies.some((el) => el.id === item.id)
             ? "Remove from watch list"
             : "Add to watch list"}
         </button>
