@@ -16,16 +16,16 @@ const Movie = inject("store")(
     const movie = movies.find((item) => item.id === id);
     console.log(JSON.stringify(movie));
     const movieGenres =
-      movies.length > 0 && genres.length > 0 ?
-      movie.genre_ids
-        .map((el) => genres.find((elem) => elem.id === el))
-        .map((element) => element.name)
-        .join(", ")
-    : "";
+      movies.length > 0 && genres.length > 0
+        ? movie.genre_ids
+            .map((el) => genres.find((elem) => elem.id === el))
+            .map((element) => element.name)
+            .join(", ")
+        : "";
 
     const addToWatchList = () => {
-      const finalWatchlist = watchMovies.includes(movie.id)
-        ? watchlist.filter((item) => item.id !== movie.id)
+      const finalWatchlist = watchMovies.some((el) => el.id === movie.id)
+        ? watchlist.filter((el) => el.id !== movie.id)
         : [...watchMovies, { id: movie.id, title: movie.title }];
 
       localStorage.setItem("watchlist", JSON.stringify(finalWatchlist));
@@ -39,7 +39,6 @@ const Movie = inject("store")(
             src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
             alt={movie.title}
           />
-
           <MovieInfo>
             <Text>
               <strong>Overview:</strong> {movie.overview}
@@ -48,7 +47,7 @@ const Movie = inject("store")(
               <strong>Genres:</strong> {movieGenres}
             </Text>
             <Button text="button" onClick={addToWatchList}>
-              {watchMovies.includes(id)
+              {watchMovies.some((el) => el.id === movie.id)
                 ? "Remove from watchlist"
                 : "Add to watchlist"}
             </Button>
